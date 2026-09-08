@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Social from "./components/Social";
 
 function App() {
   return (
     <Router>
+      <Social />
       <Navbar />
       <Routes>
         <Route path="/" element={<div>Home</div>} />

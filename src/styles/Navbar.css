@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #c28749;
+    --secondary-color: #000;
+    --text-color: #fff;
+}
+
 .navbar {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +32,7 @@
 }
 
 .nav-links li a {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
@@ -35,19 +41,19 @@
     text-transform: uppercase;
 }
 .nav-links li a:hover {
-    color: #c28749;
-    border-bottom: 2px solid #c28749;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
 }
 .nav-links li a.active {
-    color: #c28749;
-    border-bottom: 2px solid #c28749;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
 }
 
 .book-now-button {
-    background-color: #c28749;
-    color: #000;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     padding: 1rem 1rem;
     border: none;
     cursor: pointer;

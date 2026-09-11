@@ -5,67 +5,81 @@
 }
 
 .hero {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh; /* accounts for mobile browser UI */
   width: 100%;
   background-image: url("../assets/images/hero.png");
   background-size: cover;
   background-position: center;
-  display: flex;
   align-items: center;
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
+  overflow-x: hidden;
 }
 
 .hero-content {
+  padding-top: clamp(5rem, 30vh, 12rem);
+  padding-right: clamp(1rem, 5vw, 2rem);
   text-align: left;
   color: var(--text-color);
-  margin-left: 4rem;
+  margin-left: clamp(1.25rem, 6vw, 4rem);
 }
 
 .hero-caption {
-  margin-bottom: -1rem;
-  font-size: 1rem;
+  margin-bottom: -0.5rem;
+  font-size: clamp(0.7rem, 1.4vw, 1rem);
   letter-spacing: 0.3em;
   color: var(--primary-color);
 }
 
 .hero-title {
-  margin-bottom: -2rem;
-  font-size: 9rem;
+  margin-bottom: clamp(-1rem, -1.5vw, -2rem);
+  font-size: clamp(3rem, 11vw, 9rem);
   letter-spacing: 0.1em;
+  line-height: 0.95;
 }
 
 .hero-subtitle {
-  font-size: 3.5rem;
+  font-size: clamp(1.5rem, 6vw, 3.5rem);
   letter-spacing: 0.1em;
   font-weight: 400;
   color: var(--primary-color);
+  line-height: 1.1;
 }
 
 .hero-description {
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 0.05em;
   line-height: 1.5;
-  max-width: 600px;
+  max-width: min(600px, 88vw);
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   color: var(--line-color);
+  margin-top: 0.5rem;
 }
 
 .hero-buttons {
-  margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.hero-button-book {
-  padding: 1rem 2rem;
-  font-size: 1rem;
+
+.hero-button-book,
+.hero-button-gallery {
+  padding: clamp(0.75rem, 1.8vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
   text-decoration: none;
   letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.hero-button-book {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   font-weight: 500;
 }
 .hero-button-book:hover {
@@ -73,16 +87,124 @@
 }
 
 .hero-button-gallery {
-  padding: 1rem 2rem;
-  font-size: 1rem;
   border: 1px solid var(--text-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
   background-color: transparent;
   color: var(--text-color);
-  text-decoration: none;
-  letter-spacing: 0.15em;
 }
 .hero-button-gallery:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.shop-description {
+  border: 1px solid var(--line-color);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  color: var(--text-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  row-gap: 1.5rem;
+  padding: 1.5rem 1rem;
+  width: min(92%, 1400px);
+  margin: clamp(1.5rem, 5vh, 2.5rem) auto;
+  background-color: rgba(31, 28, 28, 0.5);
+}
+
+.shop-description > div {
+  flex: 1 1 220px;
+  min-width: 220px;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.shop-description > div + div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: var(--line-color);
+}
+
+.premium-inks,
+.expert-artists,
+.clean-safe,
+.aftercare-support {
+  display: flex;
+  color: var(--primary-color);
+}
+
+.shop-desc-text {
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+.shop-desc-text h3 {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  letter-spacing: 0.1em;
+}
+.shop-desc-text p {
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  letter-spacing: 0.05em;
+  color: var(--line-color);
+}
+
+.shop-desc-icon {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin-right: 0.5rem;
+}
+
+/* Tablet: wrap the 4 info columns into 2x2, drop the vertical dividers
+   since they no longer line up correctly once items wrap */
+@media (max-width: 900px) {
+  .shop-description > div {
+    flex: 1 1 45%;
+  }
+  .shop-description > div + div::before {
+    display: none;
+  }
+}
+
+/* Mobile: stack info columns, buttons full-width, tighten hero spacing */
+@media (max-width: 560px) {
+  .hero-content {
+    padding-right: 1.25rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-button-book,
+  .hero-button-gallery {
+    text-align: center;
+  }
+  .shop-description {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  .shop-description > div {
+    width: 100%;
+    padding: 1rem 0;
+  }
+  .shop-description > div + div {
+    border-top: 1px solid var(--line-color);
+  }
+}
+
+/* Short/landscape screens (phones sideways): 100dvh + 12rem padding
+   would push content off-screen, so relax the height and padding */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 2rem;
+  }
+  .hero-content {
+    padding-top: 3rem;
+  }
 }
